@@ -1,0 +1,108 @@
+/* ==========================================================================
+   social.css  |  SOCIAL MEDIA CARDS ("CONNECT" SECTION)
+   --------------------------------------------------------------------------
+   Look here if: the four social cards, their icons, handles or buttons
+   look wrong. All four cards share the same brand-colour styling.
+   ========================================================================== */
+
+.contact-section {
+  background-color: var(--color-black);
+}
+
+.social-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.social-card {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 36px 28px;
+  text-align: center;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Every card uses the same brand-colour top line */
+.social-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-rust), var(--color-gold), var(--color-teal-light));
+}
+
+.social-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-card);
+}
+
+.social-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(var(--white-rgb), 0.05);
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: var(--transition);
+}
+
+.social-card:hover .social-icon-wrapper {
+  transform: scale(1.12);
+}
+
+.social-platform-title {
+  font-size: 1.35rem;
+  color: var(--color-white);
+  margin-bottom: 6px;
+}
+
+.social-handle {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  margin-bottom: 12px;
+  word-break: break-word;
+}
+
+.social-desc {
+  font-size: 0.92rem;
+  color: var(--color-white-dim);
+  margin-bottom: 24px;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.social-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(var(--white-rgb), 0.08);
+  color: var(--color-white);
+  border: 1px solid rgba(var(--white-rgb), 0.15);
+}
+
+.social-action-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-black);
+  border-color: var(--color-gold);
+}

@@ -1,0 +1,27 @@
+<%# navbar.ejs | top navigation bar. Styles: public/css/navbar.css. Behaviour: public/js/main.js %>
+<header class="navbar">
+  <div class="container nav-container">
+
+    <a href="#hero" class="brand-logo-wrap" aria-label="<%= site.name %> home">
+      <img src="<%= site.assets.logo %>" alt="<%= site.name %>" class="brand-logo-img">
+    </a>
+
+    <nav aria-label="Main Navigation">
+      <ul class="nav-menu" id="main-menu">
+        <% site.nav.forEach(function (item) { %>
+        <li><a href="<%= item.href %>" class="nav-link"><%= item.label %></a></li>
+        <% }); %>
+      </ul>
+    </nav>
+
+    <a href="<%= site.navCta.href %>" class="nav-social-btn">
+      <span><%= site.navCta.label %></span>
+    </a>
+
+    <button type="button" class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="main-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>

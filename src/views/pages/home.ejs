@@ -1,0 +1,28 @@
+<%# ==========================================================================
+   home.ejs  |  THE HOME PAGE (assembles every piece, in order)
+   To reorder sections, move the lines below. To fix a section, open its
+   own file in src/views/sections/.
+   ========================================================================== %>
+<%- include('../partials/head') %>
+<body>
+
+  <%- include('../partials/pattern-strip') %>
+  <%- include('../partials/navbar') %>
+
+  <main>
+    <%- include('../sections/hero') %>
+    <%- include('../partials/pattern-strip') %>
+    <%- include('../sections/about') %>
+    <%- include('../partials/pattern-strip') %>
+    <%- include('../sections/past-events') %>
+    <%- include('../partials/pattern-strip') %>
+    <%- include('../sections/upcoming-event') %>
+    <%- include('../partials/pattern-strip') %>
+    <%- include('../sections/social') %>
+  </main>
+
+  <%- include('../partials/footer') %>
+  <%- include('../partials/scripts') %>
+
+</body>
+</html>

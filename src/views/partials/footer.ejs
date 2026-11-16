@@ -1,0 +1,31 @@
+<%# footer.ejs | page footer. Styles: public/css/footer.css %>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+
+      <div class="brand-logo-wrap">
+        <img src="<%= site.assets.logo %>" alt="<%= site.name %>" class="footer-logo" loading="lazy">
+      </div>
+
+      <ul class="footer-nav">
+        <li><a href="#hero">Home</a></li>
+        <% site.nav.forEach(function (item) { %>
+        <li><a href="<%= item.href %>"><%= item.label %></a></li>
+        <% }); %>
+      </ul>
+
+      <div class="footer-social-bar">
+        <% site.socials.forEach(function (social) { %>
+        <a href="<%= social.url %>" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="<%= social.name %>">
+          <%- include('icon', { name: social.key, size: social.footerIconSize }) %>
+        </a>
+        <% }); %>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; <%= new Date().getFullYear() %> <%= site.name %>. All rights reserved. <%= site.footer.tagline %></div>
+      <div><%= site.location %></div>
+    </div>
+  </div>
+</footer>

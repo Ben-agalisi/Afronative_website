@@ -1,106 +1,110 @@
 /**
  * ==============================================================================
- * AFRONATIVE ENTERTAINMENT - JAVASCRIPT CONTROLLER
+ * AFRONATIVE ENTERTAINMENT - MAIN JAVASCRIPT
  * ==============================================================================
- * TEACHING NOTE:
- * We keep this script lightweight, fast, and focused:
- * 1. Navbar Scroll Effect: Adds shadow and backdrop blur when scrolling.
- * 2. Mobile Drawer Navigation: Smooth hamburger menu for phones and tablets.
- * 3. Smooth In-Page Navigation: Scroll with ease to sections.
- * 4. Active Link Spy: Highlights the current tab as the user scrolls.
+ * What this file does (the rotating hero photos live in hero-slider.js):
+ *
+ * 1. Navbar     Adds the "scrolled" look after scrolling, and runs the phone
+ *               menu (open / close, with Escape key and screen-reader state).
+ * 2. Scroll spy Underlines the menu link of the section currently in view.
+ *
+ * Smooth scrolling to sections is NOT done here. The stylesheet already does
+ * it (html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height) }),
+ * which also respects visitors who turned animations off.
+ *
+ * Classes used (styled in public/css/navbar.css):
+ *   .scrolled  on .navbar        .open    on .nav-menu
+ *   .active    on .menu-toggle   .active  on .nav-link
  * ==============================================================================
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
-  initSmoothScroll();
   initScrollSpy();
 });
 
+/* Reads the navbar height from the CSS variable --nav-height (variables.css),
+   so the number is never repeated here. */
+function getNavHeight() {
+  const value = getComputedStyle(document.documentElement).getPropertyValue('--nav-height');
+  return parseInt(value, 10) || 84;
+}
+
 /* ==============================================================================
-   1. NAVBAR & MOBILE DRAWER CONTROLLER
+   1. NAVBAR AND PHONE MENU
    ============================================================================== */
 function initNavbar() {
   const navbar = document.querySelector('.navbar');
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-  const navLinks = document.querySelectorAll('.nav-link');
+  if (!navbar) return;
 
-  // Change navbar appearance on scroll
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
+  // Navbar look after scrolling a little
+  const updateScrolled = () => navbar.classList.toggle('scrolled', window.scrollY > 30);
+  updateScrolled();
+  window.addEventListener('scroll', updateScrolled, { passive: true });
+
+  // Phone menu
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('.nav-menu');
+  if (!toggle || !menu) return;
+
+  const setMenu = (open) => {
+    menu.classList.toggle('open', open);
+    toggle.classList.toggle('active', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  };
+
+  toggle.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+
+  // Close the menu after choosing a link
+  menu.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMenu(false));
   });
 
-  // Mobile menu toggle
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('open');
-      menuToggle.classList.toggle('active');
-    });
-
-    // Close mobile menu when a nav link is clicked
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('open');
-        menuToggle.classList.remove('active');
-      });
-    });
-  }
-}
-
-/* ==============================================================================
-   2. SMOOTH SCROLLING
-   ============================================================================== */
-function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-
-      const targetEl = document.querySelector(targetId);
-      if (targetEl) {
-        e.preventDefault();
-        const headerOffset = 84;
-        const elementPosition = targetEl.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    });
+  // Close the menu with the Escape key
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setMenu(false);
   });
 }
 
 /* ==============================================================================
-   3. SCROLL SPY (Highlights the active navbar tab as you scroll)
+   2. SCROLL SPY (underlines the link of the section you are reading)
    ============================================================================== */
 function initScrollSpy() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-menu .nav-link');
+  const sections = Array.from(document.querySelectorAll('main section[id]'));
+  const links = Array.from(document.querySelectorAll('.nav-menu .nav-link'));
+  if (!sections.length || !links.length) return;
 
-  window.addEventListener('scroll', () => {
-    let currentSectionId = '';
-    const scrollPos = window.pageYOffset + 120;
+  let waiting = false;
 
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-        currentSectionId = section.getAttribute('id');
-      }
+  const update = () => {
+    waiting = false;
+
+    // A "reading line" just under the navbar. The last section whose top has
+    // passed this line is the current one.
+    const readingLine = getNavHeight() + 40;
+    let currentId = '';
+    sections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= readingLine) currentId = section.id;
     });
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${currentSectionId}`) {
-        link.classList.add('active');
-      }
+    // At the very bottom of the page, keep the last section highlighted
+    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    if (atBottom) currentId = sections[sections.length - 1].id;
+
+    links.forEach((link) => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
     });
-  });
+  };
+
+  // Run at most once per screen refresh, not on every tiny scroll event
+  const onScroll = () => {
+    if (!waiting) {
+      waiting = true;
+      window.requestAnimationFrame(update);
+    }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update(); // also run once on page load
 }

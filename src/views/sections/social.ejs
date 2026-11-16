@@ -1,0 +1,28 @@
+<%# social.ejs | social media cards. Styles: public/css/social.css. Accounts: src/data/site.js (socials) %>
+<section id="socials" class="section-padding contact-section">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="section-tag"><%= site.socialsSection.tag %></span>
+      <h2 class="section-title"><%= site.socialsSection.title %></h2>
+      <p class="section-desc"><%= site.socialsSection.description %></p>
+    </div>
+
+    <div class="social-cards-grid">
+      <% site.socials.forEach(function (social) { %>
+      <div class="social-card <%= social.key %>">
+        <div class="social-icon-wrapper" aria-hidden="true">
+          <%- include('../partials/icon', { name: social.key, size: social.cardIconSize }) %>
+        </div>
+        <h3 class="social-platform-title"><%= social.name %></h3>
+        <div class="social-handle"><%= social.handle %></div>
+        <p class="social-desc"><%= social.description %></p>
+        <a href="<%= social.url %>" target="_blank" rel="noopener noreferrer" class="social-action-btn" aria-label="<%= social.ariaLabel %>">
+          <%= social.button %> &rarr;
+        </a>
+      </div>
+      <% }); %>
+    </div>
+
+  </div>
+</section>

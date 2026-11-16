@@ -1,0 +1,44 @@
+<%# hero.ejs | first screen with a rotating background.
+    Styles: public/css/hero.css. Slideshow script: public/js/hero-slider.js.
+    Photos, focus point and timing: src/data/site.js (assets.heroSlides, assets.heroSlideInterval) %>
+<section id="hero" class="hero-section">
+  <div class="hero-bg" data-hero-slider data-interval="<%= site.assets.heroSlideInterval %>">
+    <% site.assets.heroSlides.forEach(function (slide, index) { %>
+    <img src="<%= slide.src %>" alt="" aria-hidden="true" class="hero-bg-img<%= index === 0 ? ' is-active' : '' %>"<%- index === 0 ? ' fetchpriority="high"' : ' decoding="async"' %><% if (slide.focus) { %> style="--focus: <%= slide.focus %>"<% } %>>
+    <% }); %>
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="container hero-content">
+    <div class="hero-badge">✦ <%= site.hero.badge %></div>
+
+    <img src="<%= site.assets.logo %>" alt="<%= site.name %>" class="hero-logo">
+
+    <p class="hero-subheadline"><%= site.hero.subheadline %></p>
+
+    <div class="hero-buttons">
+      <a href="<%= site.hero.primaryButton.href %>" class="btn-primary"><%= site.hero.primaryButton.label %></a>
+      <a href="<%= site.hero.secondaryButton.href %>" class="btn-secondary"><%= site.hero.secondaryButton.label %></a>
+    </div>
+  </div>
+
+  <!-- Background Rotation Script -->
+  <script>
+    (function () {
+      const slider = document.querySelector('[data-hero-slider]');
+      if (!slider) return;
+
+      const slides = slider.querySelectorAll('.hero-bg-img');
+      if (slides.length <= 1) return;
+
+      const intervalTime = parseInt(slider.getAttribute('data-interval'), 10) || 5000;
+      let currentIndex = 0;
+
+      setInterval(function () {
+        slides[currentIndex].classList.remove('is-active');
+        currentIndex = (currentIndex + 1) % slides.length;
+        slides[currentIndex].classList.add('is-active');
+      }, intervalTime);
+    })();
+  </script>
+</section>

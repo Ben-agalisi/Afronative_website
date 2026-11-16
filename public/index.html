@@ -4,7 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AfroNative Entertainment | Elite Lifestyle & Events</title>
+ 
   <meta name="description" content="AfroNative Entertainment is a premier lifestyle and entertainment company creating unforgettable experiences through elite parties, premium events, and trips.">
+  
+  
+  
+  
+  <meta name="theme-color" content="#000000">
+<meta property="og:title" content="AfroNative Entertainment">
+<meta property="og:description" content="Elite parties, premium events and unforgettable African lifestyle experiences.">
+
+  
+  
+  
   
   <!-- Favicon / Brand Logo -->
   <link rel="icon" type="image/jpeg" href="images/logo_official.jpg">
@@ -15,7 +27,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  
+  <link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/about.css">
+<link rel="stylesheet" href="css/past-events.css">
+<link rel="stylesheet" href="css/upcoming-event.css">
+<link rel="stylesheet" href="css/social.css">
+<link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
 
@@ -24,17 +45,14 @@
 
   <!-- =========================================================================
        1. NAVIGATION HEADER (Spacious, No Overlapping, Clean Tabs)
-       ========================================================================= -->
+       ========================================================================= 
   <header class="navbar">
     <div class="container nav-container">
+      
       <!-- Brand Logo & Name -->
-      <a href="#hero" class="brand-logo-wrap">
-        <img src="images/logo_official.jpg" alt="AfroNative Logo" class="brand-logo-img">
-        <div class="brand-title-badge">
-          <span class="brand-name">AFRONATIVE</span>
-          <span class="brand-sub">ENTERTAINMENT</span>
-        </div>
-      </a>
+      <a href="#hero" class="brand-logo-wrap" aria-label="AfroNative Entertainment home">
+  <img src="images/afronative-logo.png" alt="AfroNative Entertainment" class="brand-logo-img" style="height:56px;width:auto;border-radius:0;">
+</a>
 
       <!-- Clean Desktop Nav Menu (Only 4 core tabs) -->
       <nav aria-label="Main Navigation">
@@ -64,7 +82,7 @@
     <!-- =========================================================================
          2. HERO SECTION (Dynamic SVG Stroke-Dasharray Animated Title)
          ========================================================================= -->
-    <section id="hero" class="hero-section">
+  <section id="hero" class="hero-section">
       <div class="hero-bg">
         <img src="images/hero_bg.webp" alt="AfroNative Venue Experience" class="hero-bg-img">
         <div class="hero-overlay"></div>
@@ -76,45 +94,23 @@
         </div>
 
         <!-- SVG Brand Title with stroke-dasharray animation (Non-hardcoded, scalable) -->
-        <svg class="hero-brand-svg" viewBox="0 0 920 180" preserveAspectRatio="xMidYMid meet" role="img" aria-label="AfroNative Entertainment">
-          <title>AfroNative Entertainment</title>
-          <text x="50%" y="85" text-anchor="middle" class="svg-stroke-text-main">
-            AFRONATIVE
-          </text>
-          <text x="50%" y="152" text-anchor="middle" class="svg-stroke-text-sub">
-            ENTERTAINMENT
-          </text>
-        </svg>
+       <img src="images/afronative-logo.png" alt="AfroNative Entertainment" style="display:block;width:min(520px,80%);height:auto;margin:0 auto 1.5rem;">
+         
+       
 
         <p class="hero-subheadline">
           A premier lifestyle and entertainment company. We bring people together through elite parties, premium events, exciting trips, and unforgettable African lifestyle experiences.
         </p>
 
-        <div class="hero-buttons">
-          <a href="#upcoming-event" class="btn-primary">
-            View Upcoming Event
-          </a>
-          <a href="#past-events" class="btn-secondary">
-            Explore Past Events
-          </a>
-        </div>
-
-        <!-- Live Brand Metrics -->
-        <div class="hero-stats">
-          <div class="stat-item">
-            <span class="stat-number">10+</span>
-            <span class="stat-label">Event Editions</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">10K+</span>
-            <span class="stat-label">Happy Guests</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">100%</span>
-            <span class="stat-label">African Excellence</span>
-          </div>
+              <div class="hero-buttons">
+          <a href="#upcoming-event" class="btn-primary">View Upcoming Event</a>
+          <a href="#past-events" class="btn-secondary">Explore Past Events</a>
         </div>
       </div>
+    
+
+        
+        
     </section>
 
     <!-- Cultural Pattern Ribbon -->
@@ -147,7 +143,7 @@
             <div class="culture-icon">❖</div>
             <h3 class="gradient-afro">Our Mission</h3>
             <p>
-              Afro Native Entertainment exists to bring people together through elite parties, premium events, exciting trips, entertainment activities, and lifestyle experiences that inspire connection, fun, culture, and unforgettable memories. We are committed to building a strong community driven by creativity, unity, innovation, and excellence.
+              AfroNative Entertainment  exists to bring people together through elite parties, premium events, exciting trips, entertainment activities, and lifestyle experiences that inspire connection, fun, culture, and unforgettable memories. We are committed to building a strong community driven by creativity, unity, innovation, and excellence.
             </p>
           </div>
         </div>
@@ -155,25 +151,24 @@
         <!-- Core What We Do Pillars -->
         <div class="pillars-grid">
           <div class="pillar-item">
-            <span class="pillar-icon">🎉</span>
+         <span class="pillar-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
             <h4 class="pillar-title">Elite Parties & Galas</h4>
             <p class="pillar-desc">Carefully curated nightlife and celebratory events characterized by vibrant energy, world-class DJs, and high-fashion aesthetics.</p>
           </div>
 
           <div class="pillar-item">
-            <span class="pillar-icon">✈️</span>
-            <h4 class="pillar-title">Exciting Trips & Getaways</h4>
+           <span class="pillar-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></span>
             <p class="pillar-desc">Exclusive lifestyle expeditions and group trips designed for exploration, bonding, luxury relaxation, and new horizons.</p>
           </div>
 
           <div class="pillar-item">
-            <span class="pillar-icon">🌍</span>
+      <span class="pillar-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span>
             <h4 class="pillar-title">Cultural Expression</h4>
             <p class="pillar-desc">Honoring African creativity, music, gourmet food, and fashion on contemporary international standards.</p>
           </div>
 
           <div class="pillar-item">
-            <span class="pillar-icon">🤝</span>
+      <span class="pillar-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
             <h4 class="pillar-title">Creative Networking</h4>
             <p class="pillar-desc">Bringing together entrepreneurs, creatives, influencers, and young professionals in an empowering atmosphere.</p>
           </div>
@@ -193,63 +188,70 @@
           <span class="section-tag">Memories & Energy</span>
           <h2 class="section-title">Past AfroNative Experiences</h2>
           <p class="section-desc">
-            Take a look inside the electric atmosphere, unforgettable crowds, and premium moments from our previous editions.
+            Take a look inside the electric atmosphere and premium moments from our most recent event.
           </p>
         </div>
 
         <!-- Real Event Highlights Gallery Grid -->
+
+        <p class="event-tagline" style="text-align:center;margin-bottom:1.5rem;">PÁRTI EISAGÓSIS • FIRST EDITION • 7 NOVEMBER 2026 • THE KOVE, ACCRA</p>
+
         <div class="gallery-grid">
+
+
+
+
           <div class="gallery-item">
-            <img src="images/event_01_social.jpg" alt="AfroNative Guests at Event">
+            <img src="images/event_01_social.jpg" alt="AfroNative Guests at Event" loading="lazy">
             <div class="gallery-item-overlay">
               <span class="gallery-caption">Unmatched Social Connection</span>
             </div>
           </div>
 
           <div class="gallery-item">
-            <img src="images/event_02_dj.webp" alt="High Energy DJ Booth">
+            <img src="images/event_02_dj.webp" alt="High Energy DJ Booth" loading="lazy">
             <div class="gallery-item-overlay">
               <span class="gallery-caption">Electrifying DJ Sets & Rhythms</span>
             </div>
           </div>
 
           <div class="gallery-item">
-            <img src="images/event_03_crowd.webp" alt="Crowd Energy">
+            <img src="images/event_03_crowd.webp" alt="Crowd Energy" loading="lazy">
             <div class="gallery-item-overlay">
               <span class="gallery-caption">Unrivaled Crowd Atmosphere</span>
             </div>
           </div>
 
           <div class="gallery-item">
-            <img src="images/event_04_fashion.webp" alt="Guest Fashion & Style">
+            <img src="images/event_04_fashion.webp" alt="Guest Fashion & Style" loading="lazy">
             <div class="gallery-item-overlay">
               <span class="gallery-caption">Elite Fashion & Lifestyle</span>
             </div>
           </div>
 
           <div class="gallery-item">
-            <img src="images/event_05_vip.webp" alt="VIP Hospitality">
+            <img src="images/event_05_vip.webp" alt="VIP Hospitality" loading="lazy">
             <div class="gallery-item-overlay">
               <span class="gallery-caption">Premium Table Hospitality</span>
             </div>
           </div>
 
           <div class="gallery-item">
-            <img src="images/event_06_suya.webp" alt="Suya and Gourmet Grills">
+            <img src="images/event_06_suya.webp" alt="Suya and Gourmet Grills" loading="lazy">
             <div class="gallery-item-overlay">
               <span class="gallery-caption">Authentic Culinary Delights</span>
             </div>
           </div>
 
           <div class="gallery-item">
-            <img src="images/event_07_access.webp" alt="VIP Pass Credentials">
+            <img src="images/event_07_access.webp" alt="VIP Pass Credentials" loading="lazy">
             <div class="gallery-item-overlay">
               <span class="gallery-caption">VIP Access & Experiences</span>
             </div>
           </div>
 
           <div class="gallery-item">
-            <img src="images/event_08_drinks.webp" alt="Bar & Premium Mixology">
+            <img src="images/event_08_drinks.webp" alt="Bar & Premium Mixology" loading="lazy">
             <div class="gallery-item-overlay">
               <span class="gallery-caption">Curated Drinks & Mixology</span>
             </div>
@@ -264,75 +266,74 @@
     <!-- =========================================================================
          5. UPCOMING EVENT (Single Official Flyer Card - Dynamic for Python Admin)
          ========================================================================= -->
-    <section id="upcoming-event" class="section-padding upcoming-event-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Mark Your Calendar</span>
-          <h2 class="section-title">Next Upcoming Event</h2>
-          <p class="section-desc">
-            Stay tuned for our next premier gathering. This section features our current active flyer and details.
-          </p>
+   <section id="upcoming-event" class="section-padding upcoming-event-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Mark Your Calendar</span>
+      <h2 class="section-title">Upcoming Event</h2>
+      <p class="section-desc">
+        Join us for the next AfroNative experience. Follow our socials to be first to hear about dates and tickets.
+      </p>
+    </div>
+
+    <!-- Event card: hidden automatically after the event ends -->
+    <div class="flyer-showcase-box" id="upcoming-card" data-event-end="2026-11-08T12:00:00">
+      <div class="flyer-img-wrap">
+        <img src="images/event_flyer.jpeg" alt="Flyer for Párti Eisagósis, first edition" loading="lazy">
+      </div>
+
+      <div class="flyer-details">
+        <div class="admin-sync-tag">✦ Current Official Edition</div>
+
+        <h3 class="event-live-title">PÁRTI EISAGÓSIS</h3>
+        <p class="event-tagline">TODAY WE PARTI • FIRST EDITION</p>
+
+        <div class="event-specs-list">
+          <div class="event-spec-row">
+            <div class="spec-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            </div>
+            <div><strong>Date:</strong> 07.11.2026</div>
+          </div>
+
+          <div class="event-spec-row">
+            <div class="spec-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div><strong>Time:</strong> 6:00 PM Onwards</div>
+          </div>
+
+          <div class="event-spec-row">
+            <div class="spec-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div><strong>Venue:</strong> @THE KOVE, Off the Haatso Atomic Road</div>
+          </div>
+
+          <div class="event-spec-row">
+            <div class="spec-icon"><span style="font-weight:800;font-size:0.8rem;">18+</span></div>
+            <div><strong>Admission:</strong> 18+ Adult Only</div>
+          </div>
         </div>
 
-        <!-- Single Flyer Showcase Box -->
-        <div class="flyer-showcase-box">
-          <!-- Flyer Image -->
-          <div class="flyer-img-wrap">
-            <img src="images/event_flyer.jpeg" alt="Upcoming Event Flyer - Parti Eisagosis">
-          </div>
-
-          <!-- Flyer Details -->
-          <div class="flyer-details">
-            <div class="admin-sync-tag">
-              ✦ Current Official Edition
-            </div>
-
-            <h3 class="event-live-title">PÁRTI EISAGÓSIS</h3>
-            <p class="event-tagline">TODAY WE PARTI • FIRST EDITION</p>
-
-            <div class="event-specs-list">
-              <div class="event-spec-row">
-                <div class="spec-icon">📅</div>
-                <div>
-                  <strong>Date:</strong> 07.11.2026
-                </div>
-              </div>
-
-              <div class="event-spec-row">
-                <div class="spec-icon">⏰</div>
-                <div>
-                  <strong>Time:</strong> 6:00 PM Onwards
-                </div>
-              </div>
-
-              <div class="event-spec-row">
-                <div class="spec-icon">📍</div>
-                <div>
-                  <strong>Venue:</strong> @THE KOVE, Off the Haatso Atomic Road
-                </div>
-              </div>
-
-              <div class="event-spec-row">
-                <div class="spec-icon">🔞</div>
-                <div>
-                  <strong>Admission:</strong> 18+ Adult Only
-                </div>
-              </div>
-            </div>
-
-            <!-- RSVP via Social Channels -->
-            <div class="rsvp-cta-box">
-              <span style="font-size: 0.95rem; color: var(--color-white-muted);">
-                DM us on Instagram or Snapchat for table bookings:
-              </span>
-              <a href="https://www.instagram.com/afronativeentertainment" target="_blank" rel="noopener noreferrer" class="rsvp-social-btn">
-                <span>Message on Instagram &rarr;</span>
-              </a>
-            </div>
-          </div>
+        <div class="rsvp-cta-box">
+          <span style="font-size: 0.95rem; color: var(--color-white-muted);">
+            DM us on Instagram or Snapchat for table bookings:
+          </span>
+          <a href="https://www.instagram.com/afronativeentertainment" target="_blank" rel="noopener noreferrer" class="rsvp-social-btn">
+            <span>Message on Instagram &rarr;</span>
+          </a>
         </div>
       </div>
-    </section>
+    </div>
+
+    <!-- Shown instead when no event is upcoming -->
+    <div class="rsvp-cta-box" id="upcoming-empty" style="display:none;text-align:center;max-width:640px;margin:0 auto;">
+      <span>Our next event is being planned. Follow us to be the first to know.</span>
+      <a href="#socials" class="rsvp-social-btn"><span>See our socials &rarr;</span></a>
+    </div>
+  </div>
+</section>
 
     <!-- Cultural Pattern Ribbon -->
     <div class="pattern-strip"></div>
@@ -427,12 +428,9 @@
       <div class="footer-inner">
         <!-- Logo -->
         <div class="brand-logo-wrap">
-          <img src="images/logo_official.jpg" alt="AfroNative Logo" style="height: 44px; width: 44px; border-radius: 6px;">
-          <div class="brand-title-badge">
-            <span class="brand-name">AFRONATIVE</span>
-            <span class="brand-sub">ENTERTAINMENT</span>
-          </div>
-        </div>
+        
+  <img src="images/afronative-logo.png" alt="AfroNative Entertainment" style="height:56px;width:auto;" loading="lazy">
+</div>
 
         <!-- Clean Footer Navigation -->
         <ul class="footer-nav">
@@ -465,13 +463,34 @@
           &copy; 2026 AfroNative Entertainment. All rights reserved. Culturally rooted & bold.
         </div>
         <div>
-          Accra 
+          Accra, Ghana
         </div>
       </div>
     </div>
   </footer>
 
+
+
+  <script>
+  // Show the flyer card only until the event has ended.
+  (function () {
+    var card = document.getElementById('upcoming-card');
+    var empty = document.getElementById('upcoming-empty');
+    if (!card || !empty) return;
+    var endsAt = new Date(card.getAttribute('data-event-end'));
+    if (isNaN(endsAt) || Date.now() < endsAt.getTime()) return;
+    card.style.display = 'none';
+    empty.style.display = 'block';
+  })();
+</script>
+
   <!-- Clean JavaScript File -->
+  
+  
+  
+  
   <script src="js/main.js"></script>
+
+
 </body>
 </html>

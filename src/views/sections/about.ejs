@@ -1,0 +1,36 @@
+<%# about.ejs | vision, mission and four pillars. Styles: public/css/about.css. Text: src/data/site.js (about) %>
+<section id="about" class="section-padding about-section">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="section-tag"><%= site.about.tag %></span>
+      <h2 class="section-title"><%= site.about.title %></h2>
+      <p class="section-desc"><%= site.about.description %></p>
+    </div>
+
+    <div class="vision-mission-grid">
+      <div class="card-culture vision-card">
+        <div class="culture-icon"><%= site.about.vision.symbol %></div>
+        <h3 class="gradient-gold"><%= site.about.vision.title %></h3>
+        <p><%= site.about.vision.text %></p>
+      </div>
+
+      <div class="card-culture mission-card">
+        <div class="culture-icon"><%= site.about.mission.symbol %></div>
+        <h3 class="gradient-afro"><%= site.about.mission.title %></h3>
+        <p><%= site.about.mission.text %></p>
+      </div>
+    </div>
+
+    <div class="pillars-grid">
+      <% site.about.pillars.forEach(function (pillar) { %>
+      <div class="pillar-item">
+        <span class="pillar-icon"><%- include('../partials/icon', { name: pillar.icon, size: 28 }) %></span>
+        <h4 class="pillar-title"><%= pillar.title %></h4>
+        <p class="pillar-desc"><%= pillar.text %></p>
+      </div>
+      <% }); %>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,25 @@
+<%# past-events.ejs | photo gallery. Styles: public/css/past-events.css. Photos: src/data/site.js (pastEvents) %>
+<section id="past-events" class="section-padding past-events-section">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="section-tag"><%= site.pastEvents.tag %></span>
+      <h2 class="section-title"><%= site.pastEvents.title %></h2>
+      <p class="section-desc"><%= site.pastEvents.description %></p>
+    </div>
+
+    <p class="event-tagline gallery-event-line"><%= site.pastEvents.eventLine %></p>
+
+    <div class="gallery-grid">
+      <% site.pastEvents.photos.forEach(function (photo) { %>
+      <div class="gallery-item">
+        <img src="<%= photo.src %>" alt="<%= photo.alt %>" loading="lazy">
+        <div class="gallery-item-overlay">
+          <span class="gallery-caption"><%= photo.caption %></span>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+
+  </div>
+</section>

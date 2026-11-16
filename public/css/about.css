@@ -1,0 +1,140 @@
+/* ==========================================================================
+   about.css  |  ABOUT SECTION (VISION, MISSION, FOUR PILLARS)
+   --------------------------------------------------------------------------
+   Look here if: the vision and mission cards, or the four pillar cards and
+   their icons, look wrong.
+   ========================================================================== */
+
+.about-section {
+  background-color: var(--color-dark);
+  position: relative;
+}
+
+/* ---------- Vision and mission cards ---------- */
+.vision-mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  margin-bottom: 50px;
+}
+
+.card-culture {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 44px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.card-culture:hover {
+  border-color: var(--color-gold);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+.card-culture::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-rust));
+}
+
+.card-culture.vision-card::before {
+  background: linear-gradient(90deg, var(--color-rust), var(--color-teal-light));
+}
+
+.culture-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: var(--color-gold-soft);
+  border: 1px solid var(--color-border-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold);
+  font-size: 1.5rem;
+  margin-bottom: 22px;
+}
+
+.card-culture h3 {
+  font-size: 1.85rem;
+  margin-bottom: 16px;
+}
+
+.card-culture p {
+  color: var(--color-white-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ---------- Four pillars ---------- */
+/* Two columns by default, four on wide screens, one on small phones */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.pillar-item {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  padding: 30px;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.pillar-item:hover {
+  border-color: var(--color-gold);
+  background: var(--color-card-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+.pillar-icon {
+  display: inline-flex;
+  color: var(--color-gold);
+  margin-bottom: 16px;
+}
+
+.pillar-title {
+  font-size: 1.25rem;
+  color: var(--color-white);
+  margin-bottom: 10px;
+}
+
+.pillar-desc {
+  font-size: 0.95rem;
+  color: var(--color-white-dim);
+  line-height: 1.6;
+}
+
+/* ---------- Responsive ---------- */
+@media (min-width: 1100px) {
+  .pillars-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .vision-mission-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-culture {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+}

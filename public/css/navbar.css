@@ -1,0 +1,176 @@
+/* ==========================================================================
+   navbar.css  |  TOP NAVIGATION BAR
+   --------------------------------------------------------------------------
+   Look here if: the logo looks wrong, menu links misbehave, the mobile
+   menu does not open, or the "Follow Us" button is off.
+
+   main.js adds these classes:
+     .scrolled  on the navbar after scrolling
+     .open      on the menu when the phone menu is opened (and .active on the button)
+     .active    on the link of the section currently in view
+   ========================================================================== */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(var(--dark-rgb), 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.25);
+  transition: var(--transition);
+}
+
+.navbar.scrolled {
+  background: rgba(var(--black-rgb), 0.98);
+  box-shadow: 0 10px 30px rgba(var(--black-rgb), 0.8);
+  border-bottom-color: var(--color-border-gold);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+}
+
+.brand-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.brand-logo-img {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.brand-logo-img:hover {
+  transform: scale(1.04);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-white-muted);
+  position: relative;
+  padding: 8px 0;
+  letter-spacing: 0.02em;
+}
+
+.nav-link:hover {
+  color: var(--color-gold);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--color-gold);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: var(--color-gold);
+  color: var(--color-black);
+  font-weight: 800;
+  font-size: 0.9rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 15px rgba(var(--gold-rgb), 0.3);
+  flex-shrink: 0;
+}
+
+.nav-social-btn:hover {
+  background: var(--color-gold-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  padding: 8px;
+  background: none;
+  border: 0;
+}
+
+.menu-toggle span {
+  width: 26px;
+  height: 2px;
+  background: var(--color-gold);
+  transition: var(--transition);
+}
+
+/* When the phone menu is open, the three lines turn into an X.
+   (2px line + 6px gap = 8px between line centres) */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 768px) {
+  .brand-logo-img {
+    height: 44px;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    width: 100%;
+    background: rgba(var(--black-rgb), 0.98);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 22px;
+    border-bottom: 1px solid var(--color-border-gold);
+    transform: translateY(-150%);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-menu.open {
+    transform: translateY(0);
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-social-btn {
+    display: none;
+  }
+}

@@ -1,0 +1,92 @@
+/* ==========================================================================
+   footer.css  |  PAGE FOOTER
+   --------------------------------------------------------------------------
+   Look here if: the footer logo, links, social icons or the copyright line
+   at the very bottom look wrong.
+   ========================================================================== */
+
+.footer {
+  background: var(--color-dark);
+  border-top: 1px solid var(--color-border);
+  padding-top: 60px;
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.footer-logo {
+  height: 56px;
+  width: auto;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 28px;
+}
+
+.footer-nav a {
+  color: var(--color-white-muted);
+  font-size: 0.95rem;
+}
+
+.footer-nav a:hover {
+  color: var(--color-gold);
+}
+
+.footer-social-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(var(--white-rgb), 0.06);
+  border: 1px solid rgba(var(--white-rgb), 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white-muted);
+}
+
+.footer-social-link:hover {
+  background: var(--color-gold);
+  color: var(--color-black);
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(var(--white-rgb), 0.08);
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 0.88rem;
+  color: var(--color-white-dim);
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 768px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

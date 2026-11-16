@@ -1,0 +1,74 @@
+/* ==========================================================================
+   variables.css  |  DESIGN TOKENS
+   --------------------------------------------------------------------------
+   The single source of truth for colours, fonts, sizes and effects.
+   Change a value here and the whole site updates.
+   Nothing else in the project should contain a raw colour code.
+
+   "-rgb" variables let other files make see-through colours:
+   rgba(var(--gold-rgb), 0.2)
+   ========================================================================== */
+
+:root {
+  /* Brand colours (exact values from the Brand Identity 2026 guide) */
+  --color-black: #000000;
+  --color-rust: #9F1E16;
+  --color-gold: #DEA116;
+  --color-teal: #0F504B;
+  --color-white: #FFFFFF;
+
+  /* Surfaces (dark neutrals used for sections and cards) */
+  --color-dark: #0d0d0d;
+  --color-card-bg: #1a1a1a;
+  --color-card-hover: #242424;
+  --color-border: #333333;
+
+  /* Lighter tints: the brand red and teal are too dark to read as small text
+     on black, so these are used only for tiny accents and gradients */
+  --color-rust-bright: #d64538;
+  --color-teal-light: #20c5b5;
+  --color-gold-hover: color-mix(in srgb, var(--color-gold), white 18%);
+
+  /* Text colours */
+  --color-white-muted: #e0e0e0;
+  --color-white-dim: #b0b0b0;
+
+  /* RGB helpers (for see-through colours) */
+  --gold-rgb: 222, 161, 22;
+  --teal-light-rgb: 32, 197, 181;
+  --dark-rgb: 13, 13, 13;
+  --black-rgb: 0, 0, 0;
+  --white-rgb: 255, 255, 255;
+
+  /* Borders and glows built from the helpers */
+  --color-border-gold: rgba(var(--gold-rgb), 0.4);
+  --color-gold-soft: rgba(var(--gold-rgb), 0.15);
+
+  /* Typography */
+  --font-display: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Layout */
+  --container-max: 1200px;
+  --nav-height: 84px;
+  --section-space: 100px;
+  --strip-height: 5px;
+  --strip-unit: 25px;
+
+  /* Shape and effects */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+  --transition: all 0.3s ease;
+  --shadow-gold: 0 10px 30px rgba(var(--gold-rgb), 0.3);
+  --shadow-card: 0 12px 35px rgba(var(--black-rgb), 0.6);
+}
+
+/* Smaller spacing on phones */
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 72px;
+    --section-space: 70px;
+  }
+}

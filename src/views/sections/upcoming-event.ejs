@@ -1,0 +1,54 @@
+<%# upcoming-event.ejs | next event card, or the "being planned" message.
+    Styles: public/css/upcoming-event.css. Events: src/data/site.js (upcoming).
+    server.js decides which event (if any) arrives here as "upcomingEvent". %>
+<section id="upcoming-event" class="section-padding upcoming-event-section">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="section-tag"><%= site.upcoming.tag %></span>
+      <h2 class="section-title"><%= site.upcoming.title %></h2>
+      <p class="section-desc"><%= site.upcoming.description %></p>
+    </div>
+
+    <% if (upcomingEvent) { %>
+    <div class="flyer-showcase-box" id="upcoming-card">
+      <div class="flyer-details">
+        <div class="admin-sync-tag">✦ <%= upcomingEvent.badge %></div>
+
+        <h3 class="event-live-title"><%= upcomingEvent.name %></h3>
+        <p class="event-tagline"><%= upcomingEvent.tagline %></p>
+
+        <div class="event-specs-list">
+          <% upcomingEvent.specs.forEach(function (spec) { %>
+          <div class="event-spec-row">
+            <div class="spec-icon">
+              <% if (spec.icon) { %>
+              <%- include('../partials/icon', { name: spec.icon, size: 20 }) %>
+              <% } else { %>
+              <span class="spec-icon-text"><%= spec.iconText %></span>
+              <% } %>
+            </div>
+            <div><strong><%= spec.label %>:</strong> <%= spec.value %></div>
+          </div>
+          <% }); %>
+        </div>
+
+        <div class="rsvp-cta-box">
+          <span class="rsvp-note"><%= upcomingEvent.booking.text %></span>
+          <a href="<%= upcomingEvent.booking.href %>" target="_blank" rel="noopener noreferrer" class="rsvp-social-btn">
+            <span><%= upcomingEvent.booking.label %> &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <% } else { %>
+    <div class="rsvp-cta-box upcoming-empty" id="upcoming-empty">
+      <span><%= site.upcoming.emptyMessage %></span>
+      <a href="<%= site.upcoming.emptyButton.href %>" class="rsvp-social-btn">
+        <span><%= site.upcoming.emptyButton.label %> &rarr;</span>
+      </a>
+    </div>
+    <% } %>
+
+  </div>
+</section>

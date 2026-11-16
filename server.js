@@ -1,66 +1,48 @@
-/**
- * ==============================================================================
- * AFRONATIVE ENTERTAINMENT - LOCAL DEVELOPMENT SERVER
- * ==============================================================================
- * TEACHING NOTE:
- * This Express server acts as our local web server to serve the frontend files
- * located in the `public/` directory (HTML, CSS, JS, images).
- *
- * Later, when we build the Python Admin, this frontend can easily connect to
- * Python API endpoints (FastAPI / Flask) or be served directly by Python.
- * ==============================================================================
- */
+/* ==========================================================================
+   server.js  |  STARTS THE WEBSITE
+   --------------------------------------------------------------------------
+   1. Tells Express to build pages from .ejs templates (src/views)
+   2. Serves css, js and images from the public folder
+   3. Reads all text/links/events from src/data/site.js
+   4. Decides on the server whether an upcoming event exists
+   ========================================================================== */
 
 const express = require('express');
 const path = require('path');
-const compression = require('compression');
-const morgan = require('morgan');
+const site = require('./src/data/site');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Enable HTTP request logging in terminal
-app.use(morgan('dev'));
+// Templates
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'src', 'views'));
 
-// Enable gzip/deflate compression for high-speed image and CSS delivery
-app.use(compression());
+// Static files (css, js, images). index:false means the home page is built
+// from the template, never from a leftover public/index.html file.
+app.use(express.static(path.join(__dirname, 'public'), { index: false }));
 
-// Parse JSON request bodies
-app.use(express.json());
+// The first event that has not finished yet (or null when there is none)
+function getUpcomingEvent() {
+  const now = Date.now();
+  const upcoming = site.upcoming.events
+    .filter((event) => new Date(event.endsAt).getTime() > now)
+    .sort((a, b) => new Date(a.endsAt) - new Date(b.endsAt));
+  return upcoming[0] || null;
+}
 
-// Serve static assets from the public folder
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Optional Mock API route (demonstrating how frontend talks to backend APIs)
-app.get('/api/health', (req, res) => {
-  res.json({
-    status: 'online',
-    brand: 'AfroNative Entertainment',
-    version: '1.0.0 (Brand Identity 2026)',
-    timestamp: new Date().toISOString()
+app.get('/', (req, res) => {
+  res.render('pages/home', {
+    site,
+    upcomingEvent: getUpcomingEvent(),
   });
 });
 
-// Reservation / Ticket API placeholder
-app.post('/api/reservations', (req, res) => {
-  const { event, name, email, tier } = req.body;
-  console.log(`[RESERVATION RECEIVED] ${name} (${email}) for ${event} - Tier: ${tier}`);
-  res.status(201).json({
-    success: true,
-    message: 'Reservation recorded successfully. Official ticket will be dispatched.',
-    bookingReference: 'AFRO-' + Math.floor(100000 + Math.random() * 900000)
-  });
-});
-
-// Fallback to index.html for any unmatched route
+// Anything else
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.status(404).send('Page not found');
 });
 
-// Start the server
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`\n==================================================`);
-  console.log(`🔥 AFRONATIVE ENTERTAINMENT WEB SERVER RUNNING`);
-  console.log(`📍 URL: http://localhost:${PORT} or http://127.0.0.1:${PORT}`);
-  console.log(`==================================================\n`);
+app.listen(PORT, () => {
+  console.log(`AfroNative site running at http://localhost:${PORT}`);
 });
