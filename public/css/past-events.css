@@ -68,6 +68,20 @@
   text-shadow: 0 2px 10px rgba(var(--black-rgb), 0.8);
 }
 
+/* ---------- Touch screens (phones, tablets) ----------
+   They cannot hover, so the caption is always visible instead of on hover. */
+@media (hover: none) {
+  .gallery-item-overlay {
+    opacity: 1;
+    padding: 14px;
+    background: linear-gradient(180deg, transparent 55%, rgba(var(--black-rgb), 0.8) 100%);
+  }
+
+  .gallery-caption {
+    font-size: 0.9rem;
+  }
+}
+
 /* ---------- Small phones ---------- */
 @media (max-width: 600px) {
   .gallery-grid {

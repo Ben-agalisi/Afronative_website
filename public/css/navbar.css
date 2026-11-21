@@ -16,9 +16,9 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(var(--dark-rgb), 0.94);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  /* No blur effect here: a blurred fixed bar makes scrolling jerky on
+     budget phones. A nearly solid colour looks the same and is much faster. */
+  background: rgba(var(--dark-rgb), 0.96);
   border-bottom: 1px solid rgba(var(--gold-rgb), 0.25);
   transition: var(--transition);
 }
@@ -117,6 +117,11 @@
   padding: 8px;
   background: none;
   border: 0;
+  /* at least 44 x 44 px so a thumb can hit it easily */
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
 }
 
 .menu-toggle span {
@@ -152,8 +157,6 @@
     left: 0;
     width: 100%;
     background: rgba(var(--black-rgb), 0.98);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
     flex-direction: column;
     padding: 30px 20px;
     gap: 22px;

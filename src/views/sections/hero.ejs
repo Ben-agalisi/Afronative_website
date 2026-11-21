@@ -1,10 +1,16 @@
 <%# hero.ejs | first screen with a rotating background.
     Styles: public/css/hero.css. Slideshow script: public/js/hero-slider.js.
-    Photos, focus point and timing: src/data/site.js (assets.heroSlides, assets.heroSlideInterval) %>
+    Photos, focus point and timing: src/data/site.js (assets.heroSlides, assets.heroSlideInterval).
+    Only the FIRST photo loads with the page; hero-slider.js loads the others afterwards
+    so the first screen appears faster on slow phone connections. %>
 <section id="hero" class="hero-section">
   <div class="hero-bg" data-hero-slider data-interval="<%= site.assets.heroSlideInterval %>">
     <% site.assets.heroSlides.forEach(function (slide, index) { %>
-    <img src="<%= slide.src %>" alt="" aria-hidden="true" class="hero-bg-img<%= index === 0 ? ' is-active' : '' %>"<%- index === 0 ? ' fetchpriority="high"' : ' decoding="async"' %><% if (slide.focus) { %> style="--focus: <%= slide.focus %>"<% } %>>
+    <% if (index === 0) { %>
+    <img src="<%= slide.src %>" alt="" aria-hidden="true" class="hero-bg-img is-active" fetchpriority="high"<% if (slide.focus) { %> style="--focus: <%= slide.focus %>"<% } %>>
+    <% } else { %>
+    <img data-src="<%= slide.src %>" alt="" aria-hidden="true" class="hero-bg-img" decoding="async"<% if (slide.focus) { %> style="--focus: <%= slide.focus %>"<% } %>>
+    <% } %>
     <% }); %>
     <div class="hero-overlay"></div>
   </div>
@@ -12,7 +18,7 @@
   <div class="container hero-content">
     <div class="hero-badge">✦ <%= site.hero.badge %></div>
 
-    <img src="<%= site.assets.logo %>" alt="<%= site.name %>" class="hero-logo">
+    <img src="<%= site.assets.logo %>" alt="<%= site.name %>" class="hero-logo" width="<%= site.assets.logoSize.width %>" height="<%= site.assets.logoSize.height %>">
 
     <p class="hero-subheadline"><%= site.hero.subheadline %></p>
 
@@ -22,23 +28,70 @@
     </div>
   </div>
 
-  <!-- Background Rotation Script -->
+  <!-- Hero Background Slider Script -->
   <script>
     (function () {
-      const slider = document.querySelector('[data-hero-slider]');
-      if (!slider) return;
+      'use strict';
+      var hero = document.querySelector('[data-hero-slider]');
+      if (!hero) return;
 
-      const slides = slider.querySelectorAll('.hero-bg-img');
-      if (slides.length <= 1) return;
+      var slides = hero.querySelectorAll('.hero-bg-img');
+      if (slides.length < 2) return;
 
-      const intervalTime = parseInt(slider.getAttribute('data-interval'), 10) || 5000;
-      let currentIndex = 0;
+      var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) return;
 
-      setInterval(function () {
-        slides[currentIndex].classList.remove('is-active');
-        currentIndex = (currentIndex + 1) % slides.length;
-        slides[currentIndex].classList.add('is-active');
-      }, intervalTime);
+      var interval = parseInt(hero.getAttribute('data-interval'), 10) || 6000;
+      var current = 0;
+      var timer = null;
+
+      // Swap data-src to real src so the browser downloads waiting slides
+      function loadWaitingSlides() {
+        for (var i = 0; i < slides.length; i++) {
+          var address = slides[i].getAttribute('data-src');
+          if (address) {
+            slides[i].src = address;
+            slides[i].removeAttribute('data-src');
+          }
+        }
+      }
+
+      function show(index) {
+        slides[current].classList.remove('is-active');
+        current = index;
+        slides[current].classList.add('is-active');
+      }
+
+      function next() {
+        var target = (current + 1) % slides.length;
+        if (!slides[target].complete || !slides[target].naturalWidth) return;
+        show(target);
+      }
+
+      function start() {
+        if (!timer) timer = setInterval(next, interval);
+      }
+
+      function stop() {
+        clearInterval(timer);
+        timer = null;
+      }
+
+      function begin() {
+        loadWaitingSlides();
+        start();
+      }
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) stop();
+        else start();
+      });
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', begin);
+      } else {
+        begin();
+      }
     })();
   </script>
 </section>

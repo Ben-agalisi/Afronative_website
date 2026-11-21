@@ -12,6 +12,14 @@
 
     <% if (upcomingEvent) { %>
     <div class="flyer-showcase-box" id="upcoming-card">
+
+      <%# Flyer image — only show if a flyer URL exists %>
+      <% if (upcomingEvent.flyer) { %>
+      <div class="flyer-img-wrap">
+        <img src="<%= upcomingEvent.flyer %>" alt="<%= upcomingEvent.flyerAlt || upcomingEvent.name %>" loading="lazy">
+      </div>
+      <% } %>
+
       <div class="flyer-details">
         <div class="admin-sync-tag">✦ <%= upcomingEvent.badge %></div>
 

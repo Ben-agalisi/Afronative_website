@@ -47,21 +47,21 @@ module.exports = {
   ],
 
   /* 2. ASSETS -------------------------------------------------------- */
- /* 2. ASSETS -------------------------------------------------------- */
   assets: {
-    logo: "/images/afronative-logo.png", // Updated to your exact filename
-    heroSlideInterval: 5000,   // Time in milliseconds (5 seconds per slide)
+    // Logo: big version for the hero, small version for navbar and footer
+    logo: '/images/afronative-logo.webp',
+    logoSize: { width: 880, height: 580 },
+    logoSmall: '/images/afronative-logo-sm.webp',
+    logoSmallSize: { width: 170, height: 112 },
+    // Hero background photos. They fade into each other in this order.
+    // Add or remove lines to change how many photos rotate (2 or more).
+    // "focus" = the point of the photo to keep visible when a narrow phone
+    // screen crops the sides (left% top%). Leave it out to use the centre.
     heroSlides: [
-      {
-        src: "/images/hero_bg.webp",   // First background image[cite: 1]
-        focus: "center"
-      },
-      {
-        src: "/images/hero_bg_2.webp",  // Second background image[cite: 1]
-        focus: "center"
-      }
-    
-    ]
+      { src: '/images/hero_bg.webp' },
+      { src: '/images/hero_bg_2.webp', focus: '74% 50%' },
+    ],
+    heroSlideInterval: 6000, // milliseconds each photo stays (6000 = 6 seconds)
   },
 
   /* 3. NAVIGATION ---------------------------------------------------- */

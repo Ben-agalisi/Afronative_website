@@ -1,14 +1,184 @@
+/* ==========================================================================
+   upcoming-event.css  |  UPCOMING EVENT CARD
+   --------------------------------------------------------------------------
+   Look here if: the event flyer card, the date/time/venue rows, the
+   booking box, or the "next event is being planned" message look wrong.
+   (The "planned" message appears when server.js finds no unfinished event
+   in src/data/site.js.)
+   ========================================================================== */
 
-/* "Next event is being planned" message */
-#upcoming-empty {
+/* Gold section with the brand pattern (the page is dark everywhere else, so
+   this section stands out). Headings turn black for strong contrast on gold,
+   and the dark event card pops against it. */
+.upcoming-event-section {
+  background-color: var(--color-gold);
+  background-image: var(--pattern-gold);
+  background-size: var(--pattern-size);
+  position: relative;
+}
+
+.upcoming-event-section .section-title {
+  color: var(--color-black);
+}
+
+.upcoming-event-section .section-desc {
+  color: var(--color-dark);
+  font-weight: 500;
+}
+
+.upcoming-event-section .section-tag {
+  background: var(--color-black);
+  border-color: var(--color-black);
+  color: var(--color-gold);
+}
+
+.flyer-showcase-box {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  padding: 44px;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 48px;
+  align-items: center;
+  box-shadow: 0 25px 60px rgba(var(--black-rgb), 0.45);
+  position: relative;
+}
+
+.flyer-img-wrap {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 2px solid var(--color-gold);
+  box-shadow: var(--shadow-card);
+  background: var(--color-black);
+}
+
+.flyer-img-wrap img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s ease;
+}
+
+.flyer-img-wrap:hover img {
+  transform: scale(1.03);
+}
+
+.flyer-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-sync-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(var(--teal-light-rgb), 0.15);
+  border: 1px solid var(--color-teal-light);
+  color: var(--color-teal-light);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  width: fit-content;
+  margin-bottom: 16px;
+}
+
+.event-live-title {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  color: var(--color-white);
+  margin-bottom: 12px;
+}
+
+.event-specs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.event-spec-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.05rem;
+  color: var(--color-white-muted);
+}
+
+.spec-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: var(--color-gold-soft);
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.rsvp-note {
+  font-size: 0.95rem;
+  color: var(--color-white-muted);
+}
+
+.spec-icon-text {
+  font-weight: 800;
+  font-size: 0.8rem;
+}
+
+.rsvp-cta-box {
+  background: rgba(var(--dark-rgb), 0.7);
+  border: 1px solid var(--color-border);
+  padding: 20px 24px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.rsvp-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: var(--color-gold);
+  color: var(--color-black);
+  font-weight: 800;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+}
+
+.rsvp-social-btn:hover {
+  background: var(--color-gold-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+/* "Next event is being planned" message (shown when no event is upcoming) */
+.upcoming-empty {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
   padding: 36px 28px;
 }
 
-#upcoming-empty > span {
-  display: block;
+.upcoming-event-section .upcoming-empty {
+  background: var(--color-dark);
+  border-color: var(--color-black);
+  box-shadow: 0 25px 60px rgba(var(--black-rgb), 0.35);
+}
+
+.upcoming-empty > span {
   font-size: 1.15rem;
   color: var(--color-white-muted);
-  margin-bottom: 20px;
 }
 
 /* ---------- Responsive ---------- */
@@ -17,10 +187,11 @@
     grid-template-columns: 1fr;
     text-align: center;
     padding: 32px;
+    gap: 32px;
   }
 
   .flyer-img-wrap {
-    max-width: 380px;
+    max-width: 420px;
     margin: 0 auto;
   }
 
@@ -40,6 +211,88 @@
 
 @media (max-width: 768px) {
   .flyer-showcase-box {
-    padding: 24px;
+    padding: 20px 16px;
+    gap: 24px;
+    border-radius: var(--radius-md);
+  }
+
+  .flyer-img-wrap {
+    max-width: 100%;
+    margin: 0 auto;
+    border-width: 1px;
+  }
+
+  .flyer-img-wrap img {
+    /* Ensure flyer image scales properly on mobile */
+    max-height: 500px;
+    object-fit: contain;
+  }
+
+  .event-live-title {
+    font-size: 1.6rem;
+  }
+
+  .event-specs-list {
+    gap: 10px;
+  }
+
+  .event-spec-row {
+    font-size: 0.95rem;
+  }
+
+  .spec-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.95rem;
+  }
+
+  .rsvp-cta-box {
+    flex-direction: column;
+    text-align: center;
+    padding: 16px 20px;
+    gap: 12px;
+  }
+
+  .rsvp-social-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .admin-sync-tag {
+    font-size: 0.7rem;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .flyer-showcase-box {
+    padding: 16px 12px;
+    gap: 20px;
+  }
+
+  .flyer-img-wrap img {
+    max-height: 400px;
+  }
+
+  .event-live-title {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+  }
+
+  .event-tagline {
+    font-size: 0.95rem;
+  }
+
+  .event-spec-row {
+    font-size: 0.88rem;
+    gap: 8px;
+  }
+
+  .spec-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.85rem;
   }
 }

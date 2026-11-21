@@ -55,6 +55,11 @@
   --strip-height: 5px;
   --strip-unit: 25px;
 
+  /* Brand pattern used as a section background (replace the SVG file with the
+     client's official pattern when it arrives: same file name, nothing else) */
+  --pattern-gold: url('/images/pattern-gold.svg');
+  --pattern-size: 260px;
+
   /* Shape and effects */
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -70,5 +75,6 @@
   :root {
     --nav-height: 72px;
     --section-space: 70px;
+    --pattern-size: 200px;
   }
 }
